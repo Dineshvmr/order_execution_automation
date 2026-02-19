@@ -93,6 +93,12 @@ app.get('/check-login', async (req, res) => {
     }
 });
 
+app.post('/api/exit', (req, res) => {
+    const { underlying } = req.query;
+    console.log(`EXIT TRIGGERED for ${underlying}`);
+    res.json({ success: true, message: `Exit triggered for ${underlying}` });
+});
+
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });

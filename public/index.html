@@ -29,9 +29,14 @@
         .legs-row { display: none; background-color: #fafafa; }
         .legs-row td { padding-left: 40px; font-size: 0.9em; color: #666; }
         
+        .threshold-input { width: 50px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; margin: 0 5px; }
+        .armed-status { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; margin-right: 5px; }
+        .armed-status.active { background-color: #28a745; box-shadow: 0 0 5px #28a745; }
+        
         #chart-container { height: 300px; }
         
-        #status-indicator { font-size: 0.8em; margin-top: 5px; }
+        #status-indicator { font-size: 0.8em; margin-top: 5px; display: flex; justify-content: space-between; }
+        #countdown { font-weight: bold; color: #007bff; }
     </style>
 </head>
 <body>
@@ -39,9 +44,13 @@
         <div class="header">
             <h1>Sensibull P&L Dashboard</h1>
             <div class="controls">
+                <div id="armedIndicatorContainer" style="display: flex; align-items: center; margin-right: 15px;">
+                    <div id="armedDot" class="armed-status"></div>
+                    <span id="armedText" style="font-size: 0.9em; color: #666;">Auto-Exit: Disarmed</span>
+                </div>
                 <div class="toggle-container">
                     <input type="checkbox" id="livePoll" checked>
-                    <label for="livePoll">Live Poll (30s)</label>
+                    <label for="livePoll">Live Poll</label>
                 </div>
                 <button id="refreshBtn">Refresh Now</button>
                 <button id="loginCheckBtn" class="secondary">Check Login</button>
@@ -67,13 +76,17 @@
                         <th>Delta</th>
                         <th>P&L</th>
                         <th>P&L %</th>
+                        <th>Auto-Exit (Profit% / Loss%)</th>
                     </tr>
                 </thead>
                 <tbody id="positionsBody">
                     <!-- Data will be populated here -->
                 </tbody>
             </table>
-            <div id="status-indicator">Last updated: <span id="lastUpdated">-</span></div>
+            <div id="status-indicator">
+                <span>Last updated: <span id="lastUpdated">-</span></span>
+                <span id="pollStatus">Next poll in: <span id="countdown">30</span>s</span>
+            </div>
         </div>
     </div>
 
@@ -82,6 +95,9 @@
         let pnlHistory = [];
         let timeLabels = [];
         let pollInterval;
+        let countdownValue = 30;
+        let countdownInterval;
+        let exitRules = JSON.parse(localStorage.getItem('exitRules') || '{}');
 
         const positionsBody = document.getElementById('positionsBody');
         const lastUpdatedSpan = document.getElementById('lastUpdated');
@@ -89,6 +105,9 @@
         const refreshBtn = document.getElementById('refreshBtn');
         const loginCheckBtn = document.getElementById('loginCheckBtn');
         const loginStatusDiv = document.getElementById('loginStatus');
+        const countdownSpan = document.getElementById('countdown');
+        const armedDot = document.getElementById('armedDot');
+        const armedText = document.getElementById('armedText');
 
         // Initialize Chart
         function initChart() {
@@ -138,7 +157,9 @@
                 const data = await res.json();
                 renderPositions(data.underlyings);
                 updateChart(data.underlyings);
+                checkThresholds(data.underlyings);
                 lastUpdatedSpan.textContent = new Date().toLocaleTimeString();
+                resetCountdown();
             } catch (e) {
                 console.error('Error fetching positions:', e);
             }
@@ -146,20 +167,28 @@
 
         function renderPositions(underlyings) {
             positionsBody.innerHTML = '';
+            let anyArmed = false;
+
             underlyings.forEach((u, idx) => {
                 const uPnlClass = u.total_pnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+                const rule = exitRules[u.name] || { profit: '', loss: '' };
                 
+                if (rule.profit || rule.loss) anyArmed = true;
+
                 // Underlying Row
                 const uRow = document.createElement('tr');
                 uRow.className = 'underlying-row';
                 uRow.innerHTML = `
-                    <td><strong>${u.name}</strong></td>
+                    <td onclick="toggleLegs(${idx})"><strong>${u.name}</strong></td>
                     <td>-</td>
                     <td>-</td>
                     <td class="${uPnlClass}">${u.total_pnl.toFixed(2)}</td>
                     <td class="${uPnlClass}">${u.total_pnl_pct.toFixed(2)}%</td>
+                    <td>
+                        <input type="number" class="threshold-input" placeholder="Profit%" value="${rule.profit}" onchange="saveRule('${u.name}', 'profit', this.value)">
+                        <input type="number" class="threshold-input" placeholder="Loss%" value="${rule.loss}" onchange="saveRule('${u.name}', 'loss', this.value)">
+                    </td>
                 `;
-                uRow.onclick = () => toggleLegs(idx);
                 positionsBody.appendChild(uRow);
 
                 // Legs Rows
@@ -174,10 +203,76 @@
                         <td>${leg.delta.toFixed(2)}</td>
                         <td class="${legPnlClass}">${leg.pnl.toFixed(2)}</td>
                         <td>-</td>
+                        <td>-</td>
                     `;
                     positionsBody.appendChild(legRow);
                 });
             });
+
+            updateArmedStatus(anyArmed);
+        }
+
+        function saveRule(underlying, type, value) {
+            if (!exitRules[underlying]) exitRules[underlying] = { profit: '', loss: '' };
+            exitRules[underlying][type] = value;
+            localStorage.setItem('exitRules', JSON.stringify(exitRules));
+            
+            // Check if any rules are active now
+            const anyArmed = Object.values(exitRules).some(r => r.profit || r.loss);
+            updateArmedStatus(anyArmed);
+        }
+
+        function updateArmedStatus(armed) {
+            if (armed && livePollCheckbox.checked) {
+                armedDot.classList.add('active');
+                armedText.textContent = 'Auto-Exit: Armed';
+                armedText.style.color = '#28a745';
+            } else {
+                armedDot.classList.remove('active');
+                armedText.textContent = livePollCheckbox.checked ? 'Auto-Exit: Disarmed' : 'Auto-Exit: Paused';
+                armedText.style.color = '#666';
+            }
+        }
+
+        async function checkThresholds(underlyings) {
+            if (!livePollCheckbox.checked) return;
+
+            for (const u of underlyings) {
+                const rule = exitRules[u.name];
+                if (!rule) continue;
+
+                const pnlPct = u.total_pnl_pct;
+                let triggerExit = false;
+                let reason = '';
+
+                if (rule.profit && pnlPct >= parseFloat(rule.profit)) {
+                    triggerExit = true;
+                    reason = `Profit target of ${rule.profit}% reached (${pnlPct}%)`;
+                } else if (rule.loss && pnlPct <= parseFloat(rule.loss)) {
+                    triggerExit = true;
+                    reason = `Loss limit of ${rule.loss}% reached (${pnlPct}%)`;
+                }
+
+                if (triggerExit) {
+                    if (confirm(`Exit ${u.name}? \nReason: ${reason}`)) {
+                        await triggerExitAPI(u.name);
+                    }
+                }
+            }
+        }
+
+        async function triggerExitAPI(underlying) {
+            try {
+                const res = await fetch(`/api/exit?underlying=${underlying}`, { method: 'POST' });
+                const data = await res.json();
+                alert(`API Response: ${data.message}`);
+                // Optionally clear rule after exit
+                // delete exitRules[underlying];
+                // localStorage.setItem('exitRules', JSON.stringify(exitRules));
+                // fetchPositions();
+            } catch (e) {
+                console.error('Exit API failed:', e);
+            }
         }
 
         function toggleLegs(idx) {
@@ -202,21 +297,35 @@
             pnlChart.update();
         }
 
-        function startPolling() {
-            if (pollInterval) clearInterval(pollInterval);
-            pollInterval = setInterval(() => {
-                if (livePollCheckbox.checked) {
-                    fetchPositions();
-                }
-            }, 30000);
+        function resetCountdown() {
+            countdownValue = 30;
+            countdownSpan.textContent = countdownValue;
         }
 
-        refreshBtn.onclick = fetchPositions;
+        function startPolling() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                if (livePollCheckbox.checked) {
+                    countdownValue--;
+                    if (countdownValue <= 0) {
+                        fetchPositions();
+                    }
+                    countdownSpan.textContent = countdownValue;
+                }
+            }, 1000);
+        }
+
+        refreshBtn.onclick = () => {
+            fetchPositions();
+        };
+
         loginCheckBtn.onclick = checkLogin;
         
         livePollCheckbox.onchange = () => {
+            const anyArmed = Object.values(exitRules).some(r => r.profit || r.loss);
+            updateArmedStatus(anyArmed);
             if (livePollCheckbox.checked) {
-                fetchPositions();
+                resetCountdown();
             }
         };
 
