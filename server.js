@@ -93,10 +93,105 @@ app.get('/check-login', async (req, res) => {
     }
 });
 
-app.post('/api/exit', (req, res) => {
-    const { underlying } = req.query;
+app.post('/api/exit', async (req, res) => {
+    const underlying = req.query.underlying || req.body.underlying;
     console.log(`EXIT TRIGGERED for ${underlying}`);
-    res.json({ success: true, message: `Exit triggered for ${underlying}` });
+
+    if (!underlying) {
+        return res.status(400).json({ error: 'Underlying is required' });
+    }
+
+    try {
+        const apiKey = process.env.KITE_API_KEY;
+        const accessToken = process.env.KITE_ACCESS_TOKEN;
+
+        if (!apiKey || !accessToken) {
+            console.error('Kite API Key or Access Token missing in .env');
+            return res.status(500).json({ error: 'Kite credentials missing' });
+        }
+
+        const headers = {
+            'X-Kite-Version': '3',
+            'Authorization': `token ${apiKey}:${accessToken}`
+        };
+
+        // 1. Get positions from Kite
+        console.log('Fetching positions from Kite...');
+        const posResponse = await fetch('https://api.kite.trade/portfolio/positions', { headers });
+        const posData = await posResponse.json();
+
+        if (posData.status !== 'success') {
+            console.error('Failed to fetch positions from Kite:', posData);
+            return res.status(500).json({ error: 'Failed to fetch positions from Kite', detail: posData });
+        }
+
+        // 2. Filter positions for the given underlying
+        // Kite positions are in data.net or data.day. Usually we check both or just net for square-off.
+        const allPositions = [...(posData.data.net || []), ...(posData.data.day || [])];
+        
+        // Filter unique by tradingsymbol to avoid double counting if it's in both net and day
+        const uniquePositions = [];
+        const seenSymbols = new Set();
+        for (const pos of allPositions) {
+            if (!seenSymbols.has(pos.tradingsymbol)) {
+                uniquePositions.push(pos);
+                seenSymbols.add(pos.tradingsymbol);
+            }
+        }
+
+        const matchingPositions = uniquePositions.filter(pos => 
+            pos.tradingsymbol.startsWith(underlying) && pos.quantity !== 0
+        );
+
+        console.log(`Found ${matchingPositions.length} active legs for ${underlying}`);
+
+        const orderIds = [];
+
+        // 3. Place square-off orders
+        for (const pos of matchingPositions) {
+            const transactionType = pos.quantity > 0 ? 'SELL' : 'BUY';
+            const quantity = Math.abs(pos.quantity);
+
+            console.log(`Placing square-off order for ${pos.tradingsymbol}: ${transactionType} ${quantity}`);
+
+            const orderParams = new URLSearchParams({
+                tradingsymbol: pos.tradingsymbol,
+                exchange: pos.exchange,
+                transaction_type: transactionType,
+                order_type: 'MARKET',
+                quantity: quantity.toString(),
+                product: pos.product, // Usually MIS or NRML
+                validity: 'DAY'
+            });
+
+            const orderResponse = await fetch('https://api.kite.trade/orders/regular', {
+                method: 'POST',
+                headers: {
+                    ...headers,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: orderParams
+            });
+
+            const orderResult = await orderResponse.json();
+            if (orderResult.status === 'success') {
+                console.log(`Order placed successfully for ${pos.tradingsymbol}: ${orderResult.data.order_id}`);
+                orderIds.push(orderResult.data.order_id);
+            } else {
+                console.error(`Failed to place order for ${pos.tradingsymbol}:`, orderResult);
+            }
+        }
+
+        res.json({ 
+            success: true, 
+            message: `Exit executed for ${underlying}. Orders placed: ${orderIds.length}`,
+            exited: orderIds 
+        });
+
+    } catch (error) {
+        console.error('Error during exit execution:', error);
+        res.status(500).json({ error: 'Internal Server Error during exit' });
+    }
 });
 
 app.listen(PORT, () => {
