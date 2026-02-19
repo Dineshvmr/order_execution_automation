@@ -14,46 +14,90 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+let demoMode = true; // Default to demo mode for prototype
+
 app.get('/api/positions', async (req, res) => {
     try {
-        // As per requirement, use mock data even when connected
-        const mockFilePath = path.join(__dirname, 'mock_data', 'mock_positions.json');
-        const fileData = await fs.readFile(mockFilePath, 'utf8');
-        const mockData = JSON.parse(fileData);
+        if (demoMode) {
+            console.log('[DEMO MODE] Serving mock positions');
+            const mockFilePath = path.join(__dirname, 'mock_data', 'mock_positions.json');
+            const fileData = await fs.readFile(mockFilePath, 'utf8');
+            const mockData = JSON.parse(fileData);
 
-        if (!mockData.success || !mockData.payload || !mockData.payload.data) {
-            return res.status(500).json({ error: 'Invalid mock data format' });
+            if (!mockData.success || !mockData.payload || !mockData.payload.data) {
+                return res.status(500).json({ error: 'Invalid mock data format' });
+            }
+
+            const underlyings = mockData.payload.data.map(u => {
+                const legs = u.trades.map(t => ({
+                    name: t.trading_symbol,
+                    qty: t.quantity,
+                    pnl: t.unbooked_pnl + t.booked_profit_loss,
+                    delta: t.instrument_info ? (u.total_greeks ? u.total_greeks.delta / (u.trades.length || 1) : 0) : 0
+                }));
+                const total_pnl = u.total_profit;
+                const total_pnl_pct = (Math.random() * 5).toFixed(2);
+                return {
+                    name: u.trading_symbol,
+                    total_pnl: total_pnl,
+                    total_pnl_pct: parseFloat(total_pnl_pct),
+                    legs: legs
+                };
+            });
+            return res.json({ underlyings, mode: 'demo' });
         }
 
-        const underlyings = mockData.payload.data.map(u => {
-            const legs = u.trades.map(t => ({
-                name: t.trading_symbol,
-                qty: t.quantity,
-                pnl: t.unbooked_pnl + t.booked_profit_loss,
-                delta: t.instrument_info ? (u.total_greeks ? u.total_greeks.delta / (u.trades.length || 1) : 0) : 0 // Simplified delta
-            }));
-
-            // If we have total_greeks.delta, we'll just show it at underlying level
-            const total_pnl = u.total_profit;
-            
-            // Mocking a total_pnl_pct as it's not directly in the mock data in a simple way
-            // Sensibull calculates it based on margin. For now, let's use a dummy or skip it if not found.
-            // But the requirement says Return: {underlyings: [{name:"NIFTY", total_pnl:1710, total_pnl_pct:5.79, legs:[...] }, ...] }
-            const total_pnl_pct = (Math.random() * 5).toFixed(2); // Random pct for prototype
-
-            return {
-                name: u.trading_symbol,
-                total_pnl: total_pnl,
-                total_pnl_pct: parseFloat(total_pnl_pct),
-                legs: legs
-            };
+        // Real Kite Integration
+        console.log('[LIVE MODE] Fetching real positions from Kite');
+        const positionsRes = await fetch('https://api.kite.trade/portfolio/positions', {
+            headers: {
+                'X-Kite-Version': '3',
+                'Authorization': `token ${process.env.KITE_API_KEY}:${process.env.KITE_ACCESS_TOKEN}`
+            }
         });
 
-        res.json({ underlyings });
+        if (positionsRes.status === 403 || positionsRes.status === 401) {
+            return res.status(401).json({ error: 'Kite token expired', redirect: `https://kite.zerodha.com/connect/login?api_key=${process.env.KITE_API_KEY}` });
+        }
+
+        const data = await positionsRes.json();
+        if (data.status !== 'success') {
+            throw new Error(data.message || 'Failed to fetch positions from Kite');
+        }
+
+        // Process real positions into the same format
+        const grouped = {};
+        data.data.net.forEach(pos => {
+            // Very simple grouping by first 5 chars if it's an option/future, else full symbol
+            // In a real app, we'd use a better logic or instrument metadata
+            const underlying = pos.tradingsymbol.match(/^[A-Z]+/)[0];
+            if (!grouped[underlying]) grouped[underlying] = { name: underlying, total_pnl: 0, legs: [] };
+            
+            grouped[underlying].total_pnl += pos.pnl;
+            grouped[underlying].legs.push({
+                name: pos.tradingsymbol,
+                qty: pos.quantity,
+                pnl: pos.pnl,
+                delta: 0 // Kite API doesn't give greeks in net positions directly
+            });
+        });
+
+        const underlyings = Object.values(grouped).map(u => ({
+            ...u,
+            total_pnl_pct: 0 // Need margin data for real pct, using 0 for now
+        }));
+
+        res.json({ underlyings, mode: 'live' });
     } catch (error) {
         console.error('Error fetching positions:', error);
-        res.status(500).json({ error: 'Failed to fetch positions' });
+        res.status(500).json({ error: error.message });
     }
+});
+
+app.post('/api/toggle-demo', (req, res) => {
+    demoMode = req.body.demo !== undefined ? req.body.demo : !demoMode;
+    console.log(`[SYSTEM] Demo mode toggled to: ${demoMode}`);
+    res.json({ demo: demoMode });
 });
 
 app.get('/check-login', async (req, res) => {

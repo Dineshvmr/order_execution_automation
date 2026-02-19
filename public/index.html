@@ -41,6 +41,10 @@
         .btn-confirm { background-color: #dc3545; }
         .btn-confirm:hover { background-color: #c82333; }
         
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
+        .badge-demo { background-color: #ffc107; color: #000; }
+        .badge-live { background-color: #28a745; color: #fff; }
+        
         #chart-container { height: 300px; }
         
         #status-indicator { font-size: 0.8em; margin-top: 5px; display: flex; justify-content: space-between; }
@@ -55,6 +59,10 @@
                 <div id="armedIndicatorContainer" style="display: flex; align-items: center; margin-right: 15px;">
                     <div id="armedDot" class="armed-status"></div>
                     <span id="armedText" style="font-size: 0.9em; color: #666;">Auto-Exit: Disarmed</span>
+                </div>
+                <div class="toggle-container">
+                    <input type="checkbox" id="demoMode" checked>
+                    <label for="demoMode">Demo Mode</label>
                 </div>
                 <div class="toggle-container">
                     <input type="checkbox" id="livePoll" checked>
@@ -129,6 +137,8 @@
         const armedDot = document.getElementById('armedDot');
         const armedText = document.getElementById('armedText');
 
+        const demoModeCheckbox = document.getElementById('demoMode');
+
         // Initialize Chart
         function initChart() {
             const ctx = document.getElementById('pnlChart').getContext('2d');
@@ -174,7 +184,20 @@
         async function fetchPositions() {
             try {
                 const res = await fetch('/api/positions');
+                if (res.status === 401) {
+                    const data = await res.json();
+                    if (data.redirect) {
+                        if (confirm('Kite session expired. Redirect to login?')) {
+                            window.location.href = data.redirect;
+                        }
+                        return;
+                    }
+                }
                 const data = await res.json();
+                
+                // Update Badge
+                updateModeBadge(data.mode);
+                
                 renderPositions(data.underlyings);
                 updateChart(data.underlyings);
                 checkThresholds(data.underlyings);
@@ -183,6 +206,19 @@
             } catch (e) {
                 console.error('Error fetching positions:', e);
             }
+        }
+
+        function updateModeBadge(mode) {
+            const header = document.querySelector('h1');
+            let badge = document.getElementById('modeBadge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.id = 'modeBadge';
+                badge.style.marginLeft = '15px';
+                header.appendChild(badge);
+            }
+            badge.className = `badge badge-${mode}`;
+            badge.textContent = mode;
         }
 
         function renderPositions(underlyings) {
@@ -357,6 +393,15 @@
 
         loginCheckBtn.onclick = checkLogin;
         
+        demoModeCheckbox.onchange = async () => {
+            await fetch('/api/toggle-demo', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ demo: demoModeCheckbox.checked })
+            });
+            fetchPositions();
+        };
+
         livePollCheckbox.onchange = () => {
             const anyArmed = Object.values(exitRules).some(r => r.profit || r.loss);
             updateArmedStatus(anyArmed);
