@@ -4,40 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensibull P&L Auto-Exit Prototype</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        #status { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
-        .success { color: green; }
-        .error { color: red; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f7f6; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { background-color: #f8f9fa; }
+        
+        .pnl-pos { color: #28a745; font-weight: bold; }
+        .pnl-neg { color: #dc3545; font-weight: bold; }
+        
+        .controls { display: flex; gap: 10px; align-items: center; }
+        button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; background-color: #007bff; color: white; transition: background 0.3s; }
+        button:hover { background-color: #0056b3; }
+        button.secondary { background-color: #6c757d; }
+        
+        .toggle-container { display: flex; align-items: center; gap: 5px; }
+        
+        .underlying-row { background-color: #fdfdfd; cursor: pointer; }
+        .legs-row { display: none; background-color: #fafafa; }
+        .legs-row td { padding-left: 40px; font-size: 0.9em; color: #666; }
+        
+        #chart-container { height: 300px; }
+        
+        #status-indicator { font-size: 0.8em; margin-top: 5px; }
     </style>
 </head>
 <body>
-    <h1>Sensibull Login Check</h1>
-    <button id="checkBtn">Check Login Status</button>
-    <div id="status">Click the button to check status.</div>
+    <div class="container">
+        <div class="header">
+            <h1>Sensibull P&L Dashboard</h1>
+            <div class="controls">
+                <div class="toggle-container">
+                    <input type="checkbox" id="livePoll" checked>
+                    <label for="livePoll">Live Poll (30s)</label>
+                </div>
+                <button id="refreshBtn">Refresh Now</button>
+                <button id="loginCheckBtn" class="secondary">Check Login</button>
+            </div>
+        </div>
+
+        <div id="loginStatus" class="card" style="display: none;"></div>
+
+        <div class="card">
+            <h2>P&L Trend</h2>
+            <div id="chart-container">
+                <canvas id="pnlChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Positions</h2>
+            <table id="positionsTable">
+                <thead>
+                    <tr>
+                        <th>Underlying / Leg</th>
+                        <th>Qty</th>
+                        <th>Delta</th>
+                        <th>P&L</th>
+                        <th>P&L %</th>
+                    </tr>
+                </thead>
+                <tbody id="positionsBody">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
+            <div id="status-indicator">Last updated: <span id="lastUpdated">-</span></div>
+        </div>
+    </div>
 
     <script>
-        const checkBtn = document.getElementById('checkBtn');
-        const statusDiv = document.getElementById('status');
+        let pnlChart;
+        let pnlHistory = [];
+        let timeLabels = [];
+        let pollInterval;
 
-        checkBtn.addEventListener('click', async () => {
-            statusDiv.textContent = 'Checking...';
-            try {
-                const response = await fetch('/check-login');
-                const data = await response.json();
-                
-                if (data.loggedIn) {
-                    statusDiv.innerHTML = '<span class="success">Logged In!</span>';
-                    console.log('Login success:', data);
-                } else {
-                    statusDiv.innerHTML = `<span class="error">Not Logged In: ${data.message}</span>`;
-                    console.log('Login failed:', data);
+        const positionsBody = document.getElementById('positionsBody');
+        const lastUpdatedSpan = document.getElementById('lastUpdated');
+        const livePollCheckbox = document.getElementById('livePoll');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const loginCheckBtn = document.getElementById('loginCheckBtn');
+        const loginStatusDiv = document.getElementById('loginStatus');
+
+        // Initialize Chart
+        function initChart() {
+            const ctx = document.getElementById('pnlChart').getContext('2d');
+            pnlChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: timeLabels,
+                    datasets: [{
+                        label: 'Total P&L',
+                        data: pnlHistory,
+                        borderColor: '#007bff',
+                        tension: 0.1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
                 }
-            } catch (error) {
-                statusDiv.innerHTML = '<span class="error">Error connecting to server.</span>';
-                console.error('Fetch error:', error);
+            });
+        }
+
+        async function checkLogin() {
+            try {
+                const res = await fetch('/check-login');
+                const data = await res.json();
+                loginStatusDiv.style.display = 'block';
+                if (data.loggedIn) {
+                    loginStatusDiv.innerHTML = '<span style="color: green;">✓ Logged in to Sensibull</span>';
+                } else {
+                    loginStatusDiv.innerHTML = `<span style="color: red;">✗ ${data.message}</span>`;
+                }
+            } catch (e) {
+                console.error(e);
             }
-        });
+        }
+
+        async function fetchPositions() {
+            try {
+                const res = await fetch('/api/positions');
+                const data = await res.json();
+                renderPositions(data.underlyings);
+                updateChart(data.underlyings);
+                lastUpdatedSpan.textContent = new Date().toLocaleTimeString();
+            } catch (e) {
+                console.error('Error fetching positions:', e);
+            }
+        }
+
+        function renderPositions(underlyings) {
+            positionsBody.innerHTML = '';
+            underlyings.forEach((u, idx) => {
+                const uPnlClass = u.total_pnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+                
+                // Underlying Row
+                const uRow = document.createElement('tr');
+                uRow.className = 'underlying-row';
+                uRow.innerHTML = `
+                    <td><strong>${u.name}</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="${uPnlClass}">${u.total_pnl.toFixed(2)}</td>
+                    <td class="${uPnlClass}">${u.total_pnl_pct.toFixed(2)}%</td>
+                `;
+                uRow.onclick = () => toggleLegs(idx);
+                positionsBody.appendChild(uRow);
+
+                // Legs Rows
+                u.legs.forEach(leg => {
+                    const legPnlClass = leg.pnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+                    const legRow = document.createElement('tr');
+                    legRow.className = `legs-row legs-${idx}`;
+                    legRow.style.display = 'table-row'; // Keep visible by default for now
+                    legRow.innerHTML = `
+                        <td>${leg.name}</td>
+                        <td>${leg.qty}</td>
+                        <td>${leg.delta.toFixed(2)}</td>
+                        <td class="${legPnlClass}">${leg.pnl.toFixed(2)}</td>
+                        <td>-</td>
+                    `;
+                    positionsBody.appendChild(legRow);
+                });
+            });
+        }
+
+        function toggleLegs(idx) {
+            const legs = document.querySelectorAll(`.legs-${idx}`);
+            legs.forEach(leg => {
+                leg.style.display = leg.style.display === 'none' ? 'table-row' : 'none';
+            });
+        }
+
+        function updateChart(underlyings) {
+            const totalPnl = underlyings.reduce((sum, u) => sum + u.total_pnl, 0);
+            const now = new Date().toLocaleTimeString();
+            
+            pnlHistory.push(totalPnl);
+            timeLabels.push(now);
+            
+            if (pnlHistory.length > 20) {
+                pnlHistory.shift();
+                timeLabels.shift();
+            }
+            
+            pnlChart.update();
+        }
+
+        function startPolling() {
+            if (pollInterval) clearInterval(pollInterval);
+            pollInterval = setInterval(() => {
+                if (livePollCheckbox.checked) {
+                    fetchPositions();
+                }
+            }, 30000);
+        }
+
+        refreshBtn.onclick = fetchPositions;
+        loginCheckBtn.onclick = checkLogin;
+        
+        livePollCheckbox.onchange = () => {
+            if (livePollCheckbox.checked) {
+                fetchPositions();
+            }
+        };
+
+        // Initialize
+        initChart();
+        fetchPositions();
+        startPolling();
     </script>
 </body>
 </html>
