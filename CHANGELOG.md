@@ -19,6 +19,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Updated `README.md` to remove mentions of P&L trend charts.
 
+### Fixed
+- **Poll Timer**: Fixed an issue where the next poll countdown would continue into negative numbers by ensuring an immediate reset when it reaches zero.
+
 ## [Previous Changes]
 ### Added
 - Implementation of `POST /api/exit` using real Kite API integration.

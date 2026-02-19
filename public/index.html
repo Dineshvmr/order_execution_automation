@@ -337,6 +337,8 @@
                     countdownValue--;
                     if (countdownValue <= 0) {
                         fetchPositions();
+                        // Immediate reset to avoid negative number while waiting for fetch
+                        resetCountdown();
                     }
                     countdownSpan.textContent = countdownValue;
                 }
