@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensibull P&L Auto-Exit Prototype</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #status { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Sensibull Login Check</h1>
+    <button id="checkBtn">Check Login Status</button>
+    <div id="status">Click the button to check status.</div>
+
+    <script>
+        const checkBtn = document.getElementById('checkBtn');
+        const statusDiv = document.getElementById('status');
+
+        checkBtn.addEventListener('click', async () => {
+            statusDiv.textContent = 'Checking...';
+            try {
+                const response = await fetch('/check-login');
+                const data = await response.json();
+                
+                if (data.loggedIn) {
+                    statusDiv.innerHTML = '<span class="success">Logged In!</span>';
+                    console.log('Login success:', data);
+                } else {
+                    statusDiv.innerHTML = `<span class="error">Not Logged In: ${data.message}</span>`;
+                    console.log('Login failed:', data);
+                }
+            } catch (error) {
+                statusDiv.innerHTML = '<span class="error">Error connecting to server.</span>';
+                console.error('Fetch error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
