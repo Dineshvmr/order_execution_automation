@@ -3,7 +3,7 @@ Fills the Sensibull gap by providing automated P&L threshold monitoring and auto
 
 ## Features
 - **Real-time Monitoring**: Polls Sensibull/Kite positions every 30 seconds.
-- **Visual Dashboard**: Grouped positions by underlying with P&L trend charts.
+- **Visual Dashboard**: Grouped positions by underlying.
 - **Smart Thresholds**: Set Profit % and Loss % targets per underlying.
 - **One-Click Exit**: Automated market square-off of all legs when thresholds are hit.
 - **Demo Mode**: Test the UI and logic with mock data without affecting your real portfolio.
