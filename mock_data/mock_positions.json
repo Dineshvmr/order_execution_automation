@@ -1,0 +1,2011 @@
+{
+  "success": true,
+  "payload": {
+    "data": [
+      {
+        "underlying_token": 98049,
+        "trading_symbol": "BEL",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 435.35,
+        "trades": [
+          {
+            "instrument_token": 19890434,
+            "leg_identifier": "BEL26FEB465CE/NRML",
+            "trading_symbol": "BEL26FEB465CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 465.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 1425,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 20.0,
+            "quantity": -7125.0,
+            "is_holding": false,
+            "last_price": 0.55,
+            "unbooked_pnl": 138581.25
+          }
+        ],
+        "total_profit": 138581.25,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 138581.25,
+        "total_decay": 1192.5148355076742,
+        "total_greeks": {
+          "theta": 1767.714818519741,
+          "delta": -472.04429954204204,
+          "gamma": -47.555662510856955,
+          "vega": -466.321612049991,
+          "per_lot_delta": {
+            "per_lot_delta": -0.33125915757336283,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": -142500.0,
+        "potential_upside": 3918.75,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 142500.0,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          485.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": 3889.327194414016
+          },
+          "stop_loss": "mixed-basket-negative-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            19890434
+          ],
+          "margin_shortfall": [
+            19890434
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 2865921,
+        "trading_symbol": "INDIGO",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 4815.1,
+        "trades": [
+          {
+            "instrument_token": 15199234,
+            "leg_identifier": "INDIGO26FEBFUT/NRML",
+            "trading_symbol": "INDIGO26FEBFUT",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 150,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 4600.0,
+            "quantity": 1500.0,
+            "is_holding": false,
+            "last_price": 4797.3,
+            "unbooked_pnl": 295950.0
+          }
+        ],
+        "total_profit": 295950.0000000003,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 295950.0000000003,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 1500.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 10.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 295950.0000000003,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          4600.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            15199234
+          ],
+          "margin_shortfall": [
+            15199234
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 3095553,
+        "trading_symbol": "KAYNES",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 3878.4,
+        "trades": [
+          {
+            "instrument_token": 32121346,
+            "leg_identifier": "KAYNES26FEB4150CE/NRML",
+            "trading_symbol": "KAYNES26FEB4150CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 4150.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 100,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 10.0,
+            "quantity": 900.0,
+            "is_holding": false,
+            "last_price": 11.95,
+            "unbooked_pnl": 1755.0
+          }
+        ],
+        "total_profit": 1754.9999999999993,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 1754.9999999999993,
+        "total_decay": -2575.3555616307267,
+        "total_greeks": {
+          "theta": -3854.0304237718615,
+          "delta": 101.44545491968884,
+          "gamma": 0.7695220759339301,
+          "vega": 778.4288985122994,
+          "per_lot_delta": {
+            "per_lot_delta": 1.0144545491968884,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": 9000.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 10755.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -9000.0,
+        "breakeven_at_expiry": [
+          4160.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -10435.97270221637
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            32121346
+          ],
+          "margin_shortfall": [
+            32121346
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 5013761,
+        "trading_symbol": "BSE",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 2741.4,
+        "trades": [
+          {
+            "instrument_token": 21076994,
+            "leg_identifier": "BSE26FEB2950CE/NRML",
+            "trading_symbol": "BSE26FEB2950CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 2950.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 375,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 1.0,
+            "quantity": 3750.0,
+            "is_holding": false,
+            "last_price": 4.0,
+            "unbooked_pnl": 11250.0
+          }
+        ],
+        "total_profit": 11250.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 11250.0,
+        "total_decay": -4415.818199893238,
+        "total_greeks": {
+          "theta": -6746.307053740008,
+          "delta": 251.81846293833763,
+          "gamma": 3.5245884745952103,
+          "vega": 1558.6461474413186,
+          "per_lot_delta": {
+            "per_lot_delta": 0.6715159011689004,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": 3750.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 15000.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -3750.0,
+        "breakeven_at_expiry": [
+          2951.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -14863.391888552378
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            21076994
+          ],
+          "margin_shortfall": [
+            21076994
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 408065,
+        "trading_symbol": "INFY",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 1370.5,
+        "trades": [
+          {
+            "instrument_token": 27006978,
+            "leg_identifier": "INFY26FEB1320CE/MIS",
+            "trading_symbol": "INFY26FEB1320CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 1320.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 400,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "MIS",
+            "booked_profit_loss": 0.0,
+            "average_price": 25.0,
+            "quantity": 2400.0,
+            "is_holding": false,
+            "last_price": 52.2,
+            "unbooked_pnl": 65280.0
+          }
+        ],
+        "total_profit": 65280.00000000001,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 65280.00000000001,
+        "total_decay": -1689.1226499575168,
+        "total_greeks": {
+          "theta": -4293.601941707849,
+          "delta": 1876.0588555365457,
+          "gamma": 11.65748989704037,
+          "vega": 1130.3591386399298,
+          "per_lot_delta": {
+            "per_lot_delta": 4.690147138841365,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 108239.99999999978,
+        "total_time_value": -48239.99999999978,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 125280.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -60000.0,
+        "breakeven_at_expiry": [
+          1345.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -7375.620679765507
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            27006978
+          ],
+          "margin_shortfall": [
+            27006978
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 67113993,
+        "trading_symbol": "SILVERM",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 244683.0,
+        "trades": [
+          {
+            "instrument_token": 115627271,
+            "leg_identifier": "SILVERM26FEBFUT/NRML",
+            "trading_symbol": "SILVERM26FEBFUT",
+            "instrument_info": {
+              "expiry": "2026-02-27",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 1,
+              "exchange": "MCX",
+              "multiplier": 5
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 249000.0,
+            "quantity": 2.0,
+            "is_holding": false,
+            "last_price": 244683.0,
+            "unbooked_pnl": -43170.0
+          }
+        ],
+        "total_profit": -43170.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": -43170.0,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 10.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 2.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-27"
+          }
+        },
+        "total_intrinsic_value": -43170.0,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          249000.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 257801,
+        "trading_symbol": "FINNIFTY",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 28069.5,
+        "trades": [
+          {
+            "instrument_token": 15856642,
+            "leg_identifier": "FINNIFTY26FEB27500CE/NRML",
+            "trading_symbol": "FINNIFTY26FEB27500CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 27500.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 60,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 142.75,
+            "quantity": 60.0,
+            "is_holding": false,
+            "last_price": 555.0,
+            "unbooked_pnl": 24735.0
+          }
+        ],
+        "total_profit": 24735.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 24735.0,
+        "total_decay": -28.248873897609883,
+        "total_greeks": {
+          "theta": -785.7723432066803,
+          "delta": 49.98173866878757,
+          "gamma": 0.028667517961392146,
+          "vega": 491.79683239353375,
+          "per_lot_delta": {
+            "per_lot_delta": 0.8330289778131262,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 29790.0,
+        "total_time_value": -21225.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 33300.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -8565.0,
+        "breakeven_at_expiry": [
+          27643.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": 559.4258687036927
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 738561,
+        "trading_symbol": "RELIANCE",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 1409.5,
+        "trades": [
+          {
+            "instrument_token": 33671170,
+            "leg_identifier": "RELIANCE26FEB1440PE/NRML",
+            "trading_symbol": "RELIANCE26FEB1440PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 1440.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 500,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 22.0,
+            "quantity": 1500.0,
+            "is_holding": false,
+            "last_price": 37.3,
+            "unbooked_pnl": 22950.0
+          }
+        ],
+        "total_profit": 22949.999999999996,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 22949.999999999996,
+        "total_decay": -1715.8597179439994,
+        "total_greeks": {
+          "theta": -1127.312883843499,
+          "delta": -1279.5188621019804,
+          "gamma": 10.559844188634097,
+          "vega": 567.3289855580895,
+          "per_lot_delta": {
+            "per_lot_delta": -2.559037724203961,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 52649.99999999986,
+        "total_time_value": -19649.99999999986,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 55950.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -33000.0,
+        "breakeven_at_expiry": [
+          1418.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -8562.672794794595
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            33671170
+          ],
+          "margin_shortfall": [
+            33671170
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 2585345,
+        "trading_symbol": "GODREJCP",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 1188.6,
+        "trades": [
+          {
+            "instrument_token": 25611778,
+            "leg_identifier": "GODREJCP26FEB1210CE/NRML",
+            "trading_symbol": "GODREJCP26FEB1210CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 1210.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 500,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 10.0,
+            "quantity": 5000.0,
+            "is_holding": false,
+            "last_price": 3.1,
+            "unbooked_pnl": -34500.0
+          }
+        ],
+        "total_profit": -34500.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": -34500.0,
+        "total_decay": -2828.403643418511,
+        "total_greeks": {
+          "theta": -3779.165328027807,
+          "delta": 1057.5879923219413,
+          "gamma": 55.41209163722294,
+          "vega": 2013.1424816921303,
+          "per_lot_delta": {
+            "per_lot_delta": 2.1151759846438827,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": 50000.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 15500.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -50000.0,
+        "breakeven_at_expiry": [
+          1220.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -14025.218716084353
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            25611778
+          ],
+          "margin_shortfall": [
+            25611778
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 1076225,
+        "trading_symbol": "MOTHERSON",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 129.88,
+        "trades": [
+          {
+            "instrument_token": 15212546,
+            "leg_identifier": "MOTHERSON26FEBFUT/NRML",
+            "trading_symbol": "MOTHERSON26FEBFUT",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 6150,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 131.0,
+            "quantity": 6150.0,
+            "is_holding": false,
+            "last_price": 129.79,
+            "unbooked_pnl": -7441.5
+          }
+        ],
+        "total_profit": -7441.500000000049,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": -7441.500000000049,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 6150.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 1.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": -7441.500000000049,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          131.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            15212546
+          ],
+          "margin_shortfall": [
+            15212546
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 1346049,
+        "trading_symbol": "INDUSINDBK",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 927.35,
+        "trades": [
+          {
+            "instrument_token": 26793730,
+            "leg_identifier": "INDUSINDBK26FEB940CE/NRML",
+            "trading_symbol": "INDUSINDBK26FEB940CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 940.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 700,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 15.0,
+            "quantity": -2800.0,
+            "is_holding": false,
+            "last_price": 5.0,
+            "unbooked_pnl": 28000.0
+          }
+        ],
+        "total_profit": 28000.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 28000.0,
+        "total_decay": 1633.0754584282317,
+        "total_greeks": {
+          "theta": 2686.6350936925937,
+          "delta": -808.8471092520087,
+          "gamma": -34.06780595755131,
+          "vega": -1034.4105755044866,
+          "per_lot_delta": {
+            "per_lot_delta": -1.1554958703600124,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": -42000.0,
+        "potential_upside": 14000.0,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 42000.0,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          955.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": 10355.42890287942
+          },
+          "stop_loss": "mixed-basket-negative-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            26793730
+          ],
+          "margin_shortfall": [
+            26793730
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 5552641,
+        "trading_symbol": "DIXON",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 11237.0,
+        "trades": [
+          {
+            "instrument_token": 15182338,
+            "leg_identifier": "DIXON26FEBFUT/NRML",
+            "trading_symbol": "DIXON26FEBFUT",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 50,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 11000.0,
+            "quantity": 150.0,
+            "is_holding": false,
+            "last_price": 11193.0,
+            "unbooked_pnl": 28950.0
+          }
+        ],
+        "total_profit": 28950.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 28950.0,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 150.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 3.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 28950.0,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          11000.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            15182338
+          ],
+          "margin_shortfall": [
+            15182338
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 67110921,
+        "trading_symbol": "GOLDM",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 155780.0,
+        "trades": [
+          {
+            "instrument_token": 122343431,
+            "leg_identifier": "GOLDM26APRFUT/NRML",
+            "trading_symbol": "GOLDM26APRFUT",
+            "instrument_info": {
+              "expiry": "2026-04-03",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 1,
+              "exchange": "MCX",
+              "multiplier": 10
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 1000.0,
+            "quantity": 1.0,
+            "is_holding": false,
+            "last_price": 155800.0,
+            "unbooked_pnl": 1548000.0
+          }
+        ],
+        "total_profit": 1548000.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 1548000.0,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 10.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 1.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-04-03"
+          }
+        },
+        "total_intrinsic_value": 1548000.0,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          1000.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 779521,
+        "trading_symbol": "SBIN",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 1205.7,
+        "trades": [
+          {
+            "instrument_token": 13092354,
+            "leg_identifier": "SBIN26FEB1215CE/NRML",
+            "trading_symbol": "SBIN26FEB1215CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 1215.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 750,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 15.0,
+            "quantity": -1500.0,
+            "is_holding": false,
+            "last_price": 5.75,
+            "unbooked_pnl": 13875.0
+          }
+        ],
+        "total_profit": 13875.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 13875.0,
+        "total_decay": 882.9308388119728,
+        "total_greeks": {
+          "theta": 1478.7567118104002,
+          "delta": -487.64014229476635,
+          "gamma": -19.71455180423054,
+          "vega": -759.7262144746848,
+          "per_lot_delta": {
+            "per_lot_delta": -0.6501868563930218,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": -22500.0,
+        "potential_upside": 8625.0,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 22500.0,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          1230.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": 5834.679898896809
+          },
+          "stop_loss": "mixed-basket-negative-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            13092354
+          ],
+          "margin_shortfall": [
+            13092354
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 424961,
+        "trading_symbol": "ITC",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 326.0,
+        "trades": [
+          {
+            "instrument_token": 30517762,
+            "leg_identifier": "ITC26FEB331CE/NRML",
+            "trading_symbol": "ITC26FEB331CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 331.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 1600,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": -4.0,
+            "quantity": 8000.0,
+            "is_holding": false,
+            "last_price": 0.8,
+            "unbooked_pnl": 38400.0
+          }
+        ],
+        "total_profit": 38400.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 38400.0,
+        "total_decay": -1051.5928699744563,
+        "total_greeks": {
+          "theta": -1558.3963723140796,
+          "delta": 1693.784930920331,
+          "gamma": 344.3945420612104,
+          "vega": 882.5852339203951,
+          "per_lot_delta": {
+            "per_lot_delta": 1.0586155818252068,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": -32000.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 6400.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": 32000.0,
+        "breakeven_at_expiry": null,
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -5608.667595636291
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            30517762
+          ],
+          "margin_shortfall": [
+            30517762
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 4464129,
+        "trading_symbol": "OIL",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 476.7,
+        "trades": [
+          {
+            "instrument_token": 13310978,
+            "leg_identifier": "OIL26MARFUT/NRML",
+            "trading_symbol": "OIL26MARFUT",
+            "instrument_info": {
+              "expiry": "2026-03-30",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 1400,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 400.0,
+            "quantity": 4200.0,
+            "is_holding": false,
+            "last_price": 477.65,
+            "unbooked_pnl": 326130.0
+          }
+        ],
+        "total_profit": 326129.9999999999,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 326129.9999999999,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 4200.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 3.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-03-30"
+          }
+        },
+        "total_intrinsic_value": 326129.9999999999,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          400.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            13310978
+          ],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 2730497,
+        "trading_symbol": "PNB",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 126.1,
+        "trades": [
+          {
+            "instrument_token": 39772162,
+            "leg_identifier": "PNB26FEB125CE/NRML",
+            "trading_symbol": "PNB26FEB125CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 125.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 8000,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 3.0,
+            "quantity": 64000.0,
+            "is_holding": false,
+            "last_price": 1.94,
+            "unbooked_pnl": -67840.0
+          }
+        ],
+        "total_profit": -67840.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": -67840.0,
+        "total_decay": -5607.908124949063,
+        "total_greeks": {
+          "theta": -9448.218257115208,
+          "delta": 37796.469767501374,
+          "gamma": 6547.162581445979,
+          "vega": 3662.3112717270583,
+          "per_lot_delta": {
+            "per_lot_delta": 4.724558720937671,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 51840.000000000146,
+        "total_time_value": 140159.99999999985,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 124160.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -192000.0,
+        "breakeven_at_expiry": [
+          128.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -36448.81410734706
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            39772162
+          ],
+          "margin_shortfall": [
+            39772162
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 260105,
+        "trading_symbol": "BANKNIFTY",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 60739.55,
+        "trades": [
+          {
+            "instrument_token": 15376130,
+            "leg_identifier": "BANKNIFTY26FEB57900CE/NRML",
+            "trading_symbol": "BANKNIFTY26FEB57900CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 57900.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 30,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 50.0,
+            "quantity": 60.0,
+            "is_holding": false,
+            "last_price": 3000.0,
+            "unbooked_pnl": 177000.0
+          }
+        ],
+        "total_profit": 177000.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 177000.0,
+        "total_decay": 157.1347362747474,
+        "total_greeks": {
+          "theta": -1010.5890424640021,
+          "delta": 57.13778878648946,
+          "gamma": 0.0035148727383027527,
+          "vega": 422.99950359072386,
+          "per_lot_delta": {
+            "per_lot_delta": 1.9045929595496487,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 164400.0,
+        "total_time_value": -161400.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 180000.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -3000.0,
+        "breakeven_at_expiry": [
+          57950.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 681985,
+        "trading_symbol": "PIDILITIND",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 1464.9,
+        "trades": [
+          {
+            "instrument_token": 38596866,
+            "leg_identifier": "PIDILITIND26FEB1500CE/NRML",
+            "trading_symbol": "PIDILITIND26FEB1500CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 1500.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 500,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 1.0,
+            "quantity": 3500.0,
+            "is_holding": false,
+            "last_price": 2.2,
+            "unbooked_pnl": 4200.0
+          }
+        ],
+        "total_profit": 4200.000000000001,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 4200.000000000001,
+        "total_decay": -1829.7865985615117,
+        "total_greeks": {
+          "theta": -2421.745969522134,
+          "delta": 491.22249710082343,
+          "gamma": 25.14416193191963,
+          "vega": 1338.7397619530893,
+          "per_lot_delta": {
+            "per_lot_delta": 0.9824449942016469,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": 3500.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 7700.000000000001,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -3500.0,
+        "breakeven_at_expiry": [
+          1501.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -7440.158008645939
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            38596866
+          ],
+          "margin_shortfall": [
+            38596866
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 1716481,
+        "trading_symbol": "PAYTM",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 1145.6,
+        "trades": [
+          {
+            "instrument_token": 17142530,
+            "leg_identifier": "PAYTM26APRFUT/NRML",
+            "trading_symbol": "PAYTM26APRFUT",
+            "instrument_info": {
+              "expiry": "2026-04-28",
+              "strike": null,
+              "instrument_type": "Future",
+              "is_weekly": false,
+              "lot_size": 725,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 1100.0,
+            "quantity": 4350.0,
+            "is_holding": false,
+            "last_price": 1156.6,
+            "unbooked_pnl": 246210.0
+          }
+        ],
+        "total_profit": 246209.9999999996,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 246209.9999999996,
+        "total_decay": 0.0,
+        "total_greeks": {
+          "theta": 0.0,
+          "delta": 4350.0,
+          "gamma": 0.0,
+          "vega": 0.0,
+          "per_lot_delta": {
+            "per_lot_delta": 6.0,
+            "multiple_lot_size": false,
+            "lot_month": "2026-04-28"
+          }
+        },
+        "total_intrinsic_value": 246209.9999999996,
+        "total_time_value": 0.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          1100.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": "mixed-basket-positive-delta",
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 6401,
+        "trading_symbol": "ADANIENT",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 2156.7,
+        "trades": [
+          {
+            "instrument_token": 14872834,
+            "leg_identifier": "ADANIENT26FEB2220CE/NRML",
+            "trading_symbol": "ADANIENT26FEB2220CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 2220.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 309,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 120.0,
+            "quantity": -1545.0,
+            "is_holding": false,
+            "last_price": 10.3,
+            "unbooked_pnl": 169486.5
+          }
+        ],
+        "total_profit": 169486.5,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 169486.5,
+        "total_decay": 2685.778706549819,
+        "total_greeks": {
+          "theta": 3804.8668550894095,
+          "delta": -339.7320752825405,
+          "gamma": -5.497043805176724,
+          "vega": -1152.489830211182,
+          "per_lot_delta": {
+            "per_lot_delta": -1.0994565543124288,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": -185400.0,
+        "potential_upside": 15913.5,
+        "potential_downside": 1.7976931348623157e308,
+        "max_profit": 185400.0,
+        "max_loss": -1.7976931348623157e308,
+        "breakeven_at_expiry": [
+          2340.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": 14047.162961318367
+          },
+          "stop_loss": "mixed-basket-negative-delta",
+          "upcoming_event": false,
+          "physical_settlement": [
+            14872834
+          ],
+          "margin_shortfall": [
+            14872834
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 1041153,
+        "trading_symbol": "MARICO",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 780.15,
+        "trades": [
+          {
+            "instrument_token": 29889538,
+            "leg_identifier": "MARICO26FEB800CE/NRML",
+            "trading_symbol": "MARICO26FEB800CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 800.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 1200,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": -10.0,
+            "quantity": 8400.0,
+            "is_holding": false,
+            "last_price": 0.85,
+            "unbooked_pnl": 91140.0
+          }
+        ],
+        "total_profit": 91140.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 91140.0,
+        "total_decay": -1721.4684399183852,
+        "total_greeks": {
+          "theta": -2581.3048994918067,
+          "delta": 901.5221289357278,
+          "gamma": 93.28554551824506,
+          "vega": 1414.6438127094955,
+          "per_lot_delta": {
+            "per_lot_delta": 0.7512684407797732,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": -84000.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 7140.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": 84000.0,
+        "breakeven_at_expiry": null,
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -6935.023933747188
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [
+            29889538
+          ],
+          "margin_shortfall": [
+            29889538
+          ]
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 265,
+        "trading_symbol": "SENSEX",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 82498.14,
+        "trades": [
+          {
+            "instrument_token": 298467589,
+            "leg_identifier": "SENSEX26FEB85200CE/NRML",
+            "trading_symbol": "SENSEX26FEB85200CE",
+            "instrument_info": {
+              "expiry": "2026-02-26",
+              "strike": 85200.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 20,
+              "exchange": "BFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 4.0,
+            "quantity": 6000.0,
+            "is_holding": false,
+            "last_price": 44.0,
+            "unbooked_pnl": 240000.0
+          },
+          {
+            "instrument_token": 298686981,
+            "leg_identifier": "SENSEX26FEB87000CE/NRML",
+            "trading_symbol": "SENSEX26FEB87000CE",
+            "instrument_info": {
+              "expiry": "2026-02-26",
+              "strike": 87000.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 20,
+              "exchange": "BFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 5.0,
+            "quantity": 240.0,
+            "is_holding": false,
+            "last_price": 18.0,
+            "unbooked_pnl": 3120.0
+          }
+        ],
+        "total_profit": 243120.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 243120.0,
+        "total_decay": -61015.29361747773,
+        "total_greeks": {
+          "theta": -90113.55604457489,
+          "delta": 360.3638099115348,
+          "gamma": 0.4109469893028894,
+          "vega": 82135.17196150748,
+          "per_lot_delta": {
+            "per_lot_delta": 18.01819049557674,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-26"
+          }
+        },
+        "total_intrinsic_value": 0.0,
+        "total_time_value": 25200.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 268320.0,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -25200.0,
+        "breakeven_at_expiry": [
+          85204.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": -238632.60771723333
+          },
+          "stop_loss": "all-call-basket",
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": 256265,
+        "trading_symbol": "NIFTY",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 25454.35,
+        "trades": [
+          {
+            "instrument_token": 16629250,
+            "leg_identifier": "NIFTY26FEB26600CE/NRML",
+            "trading_symbol": "NIFTY26FEB26600CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26600.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 4.95,
+            "unbooked_pnl": -45181.5
+          },
+          {
+            "instrument_token": 16630018,
+            "leg_identifier": "NIFTY26FEB26650CE/NRML",
+            "trading_symbol": "NIFTY26FEB26650CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26650.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 4.65,
+            "unbooked_pnl": -45220.5
+          },
+          {
+            "instrument_token": 16631554,
+            "leg_identifier": "NIFTY26FEB26700CE/NRML",
+            "trading_symbol": "NIFTY26FEB26700CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26700.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 4.35,
+            "unbooked_pnl": -45259.5
+          },
+          {
+            "instrument_token": 16639234,
+            "leg_identifier": "NIFTY26FEB26750CE/NRML",
+            "trading_symbol": "NIFTY26FEB26750CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26750.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 4.2,
+            "unbooked_pnl": -45279.0
+          },
+          {
+            "instrument_token": 16623874,
+            "leg_identifier": "NIFTY26FEB26500CE/NRML",
+            "trading_symbol": "NIFTY26FEB26500CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26500.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 5.75,
+            "unbooked_pnl": -45077.5
+          },
+          {
+            "instrument_token": 16628738,
+            "leg_identifier": "NIFTY26FEB26550CE/NRML",
+            "trading_symbol": "NIFTY26FEB26550CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26550.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 5.1,
+            "unbooked_pnl": -45162.0
+          },
+          {
+            "instrument_token": 16622338,
+            "leg_identifier": "NIFTY26FEB26400CE/NRML",
+            "trading_symbol": "NIFTY26FEB26400CE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26400.0,
+              "instrument_type": "Call",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 6.55,
+            "unbooked_pnl": -44973.5
+          },
+          {
+            "instrument_token": 16631298,
+            "leg_identifier": "NIFTY26FEB26650PE/NRML",
+            "trading_symbol": "NIFTY26FEB26650PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26650.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 840.5,
+            "unbooked_pnl": 63440.0
+          },
+          {
+            "instrument_token": 16636930,
+            "leg_identifier": "NIFTY26FEB26700PE/NRML",
+            "trading_symbol": "NIFTY26FEB26700PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26700.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 1289.1,
+            "unbooked_pnl": 121758.0
+          },
+          {
+            "instrument_token": 16654082,
+            "leg_identifier": "NIFTY26FEB26750PE/NRML",
+            "trading_symbol": "NIFTY26FEB26750PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26750.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 1341.1,
+            "unbooked_pnl": 128518.0
+          },
+          {
+            "instrument_token": 16628482,
+            "leg_identifier": "NIFTY26FEB26500PE/NRML",
+            "trading_symbol": "NIFTY26FEB26500PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26500.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 1093.55,
+            "unbooked_pnl": 96336.5
+          },
+          {
+            "instrument_token": 16628994,
+            "leg_identifier": "NIFTY26FEB26550PE/NRML",
+            "trading_symbol": "NIFTY26FEB26550PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26550.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 1145.3,
+            "unbooked_pnl": 103064.0
+          },
+          {
+            "instrument_token": 16623106,
+            "leg_identifier": "NIFTY26FEB26400PE/NRML",
+            "trading_symbol": "NIFTY26FEB26400PE",
+            "instrument_info": {
+              "expiry": "2026-02-24",
+              "strike": 26400.0,
+              "instrument_type": "Put",
+              "is_weekly": false,
+              "lot_size": 65,
+              "exchange": "NFO",
+              "multiplier": 1
+            },
+            "debug": null,
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 352.5,
+            "quantity": 130.0,
+            "is_holding": false,
+            "last_price": 994.55,
+            "unbooked_pnl": 83466.5
+          }
+        ],
+        "total_profit": 280429.5,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 280429.5,
+        "total_decay": -8487.367361602044,
+        "total_greeks": {
+          "theta": -5417.410301160068,
+          "delta": -739.6595501145317,
+          "gamma": 0.16614575422143196,
+          "vega": 2816.614951664107,
+          "per_lot_delta": {
+            "per_lot_delta": -11.379377694069719,
+            "multiple_lot_size": false,
+            "lot_month": "2026-02-24"
+          }
+        },
+        "total_intrinsic_value": 921700.0,
+        "total_time_value": -325975.0,
+        "potential_upside": 1.7976931348623157e308,
+        "potential_downside": 791654.5,
+        "max_profit": 1.7976931348623157e308,
+        "max_loss": -511225.0,
+        "breakeven_at_expiry": [
+          25828.0,
+          27248.0
+        ],
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": null,
+          "upcoming_event": false,
+          "physical_settlement": [],
+          "margin_shortfall": []
+        },
+        "debug": null
+      },
+      {
+        "underlying_token": -1,
+        "trading_symbol": "UNTRACKED",
+        "currency_future_symbol": null,
+        "currency_future_token": null,
+        "underlying_price": 0.0,
+        "trades": [
+          {
+            "instrument_token": -1,
+            "leg_identifier": "SILVERM26FEB280000CE/NRML",
+            "trading_symbol": "SILVERM26FEB280000CE",
+            "instrument_info": null,
+            "debug": "unknown trading symbol SILVERM26FEB280000CE",
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 10053.0,
+            "quantity": -150.0,
+            "is_holding": false,
+            "last_price": 0.0,
+            "unbooked_pnl": 0.0
+          },
+          {
+            "instrument_token": -1,
+            "leg_identifier": "SILVERM26FEB275000CE/NRML",
+            "trading_symbol": "SILVERM26FEB275000CE",
+            "instrument_info": null,
+            "debug": "unknown trading symbol SILVERM26FEB275000CE",
+            "product": "NRML",
+            "booked_profit_loss": 0.0,
+            "average_price": 10053.0,
+            "quantity": -150.0,
+            "is_holding": false,
+            "last_price": 0.0,
+            "unbooked_pnl": 0.0
+          }
+        ],
+        "total_profit": 0.0,
+        "total_booked_pnl": 0.0,
+        "total_unbooked_pnl": 0.0,
+        "total_decay": null,
+        "total_greeks": null,
+        "total_intrinsic_value": null,
+        "total_time_value": null,
+        "potential_upside": null,
+        "potential_downside": null,
+        "max_profit": null,
+        "max_loss": null,
+        "breakeven_at_expiry": null,
+        "insights": {
+          "theta_bleed": {
+            "holiday_theta": null,
+            "weekend_theta": null
+          },
+          "stop_loss": null,
+          "upcoming_event": null,
+          "physical_settlement": null,
+          "margin_shortfall": null
+        },
+        "debug": null
+      }
+    ],
+    "total_profit": 3602490.7499999995,
+    "total_booked_pnl": 0.0,
+    "total_unbooked_pnl": 3602490.7499999995,
+    "total_decay": -86414.79108365234,
+    "hash": "3630534ffc0a2a40ed4a1dc3d128a28caae0621d6576de09ef19511807531500",
+    "position_filters": {
+      "unselected_underlyers": [],
+      "selected_expiries": {},
+      "unselected_trades": []
+    },
+    "request_timestamp": 1771503254761
+  }
+}
