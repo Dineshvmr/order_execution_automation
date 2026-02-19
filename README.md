@@ -16,7 +16,8 @@ Fills the Sensibull gap by providing automated P&L threshold monitoring and auto
 ## Setup
 1. **Sensibull Login**: Ensure you are logged into [web.sensibull.com](https://web.sensibull.com) in your browser (cookies persist for the login check).
 2. **Kite Access**:
-   - Get your `access_token` by visiting: `https://kite.zerodha.com/connect/login?api_key=4wlx0yhpb2qq4wz3`
+   - Get your `access_token` by visiting the Kite Connect login URL (replace `your_api_key` with your actual Kite API key):
+     `https://kite.zerodha.com/connect/login?api_key=your_api_key`
    - Update the `.env` file with your `KITE_API_KEY` and `KITE_ACCESS_TOKEN`.
 3. **Installation**:
    ```bash

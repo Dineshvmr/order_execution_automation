@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [2026-02-19]
+### Security
+- **Sensitive Data Management**: Removed hardcoded Kite API keys from `README.md`.
+- **Environment Protection**: Added `.env` to `.gitignore` and removed it from Git tracking to ensure API keys and secrets are managed safely.
+
 ### Improved
 - **Sensibull Login Check**: Updated `/check-login` to handle redirects and better detect login status, providing more descriptive error messages.
 - **Kite Live Mode**: Enhanced error handling in `/api/positions` for Live mode, including better JSON parsing and clearer instructions on token expiry/invalidity.
