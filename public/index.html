@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensibull P&L Auto-Exit Prototype</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f7f6; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -45,7 +44,6 @@
         .badge-demo { background-color: #ffc107; color: #000; }
         .badge-live { background-color: #28a745; color: #fff; }
         
-        #chart-container { height: 300px; }
         
         #status-indicator { font-size: 0.8em; margin-top: 5px; display: flex; justify-content: space-between; }
         #countdown { font-weight: bold; color: #007bff; }
@@ -75,12 +73,6 @@
 
         <div id="loginStatus" class="card" style="display: none;"></div>
 
-        <div class="card">
-            <h2>P&L Trend</h2>
-            <div id="chart-container">
-                <canvas id="pnlChart"></canvas>
-            </div>
-        </div>
 
         <div class="card">
             <h2>Positions</h2>
@@ -119,9 +111,6 @@
     </div>
 
     <script>
-        let pnlChart;
-        let pnlHistory = [];
-        let timeLabels = [];
         let pollInterval;
         let countdownValue = 30;
         let countdownInterval;
@@ -139,32 +128,6 @@
 
         const demoModeCheckbox = document.getElementById('demoMode');
 
-        // Initialize Chart
-        function initChart() {
-            const ctx = document.getElementById('pnlChart').getContext('2d');
-            pnlChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: timeLabels,
-                    datasets: [{
-                        label: 'Total P&L',
-                        data: pnlHistory,
-                        borderColor: '#007bff',
-                        tension: 0.1,
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false
-                        }
-                    }
-                }
-            });
-        }
 
         async function checkLogin() {
             try {
@@ -199,7 +162,6 @@
                 updateModeBadge(data.mode);
                 
                 renderPositions(data.underlyings);
-                updateChart(data.underlyings);
                 checkThresholds(data.underlyings);
                 lastUpdatedSpan.textContent = new Date().toLocaleTimeString();
                 resetCountdown();
@@ -354,20 +316,6 @@
             });
         }
 
-        function updateChart(underlyings) {
-            const totalPnl = underlyings.reduce((sum, u) => sum + u.total_pnl, 0);
-            const now = new Date().toLocaleTimeString();
-            
-            pnlHistory.push(totalPnl);
-            timeLabels.push(now);
-            
-            if (pnlHistory.length > 20) {
-                pnlHistory.shift();
-                timeLabels.shift();
-            }
-            
-            pnlChart.update();
-        }
 
         function resetCountdown() {
             countdownValue = 30;
@@ -411,7 +359,6 @@
         };
 
         // Initialize
-        initChart();
         fetchPositions();
         startPolling();
     </script>
