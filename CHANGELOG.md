@@ -3,23 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [2026-02-19]
-### Security
-- **Sensitive Data Management**: Removed hardcoded Kite API keys from `README.md`.
-- **Environment Protection**: Added `.env` to `.gitignore` and removed it from Git tracking to ensure API keys and secrets are managed safely.
-
-### Improved
-- **Sensibull Login Check**: Updated `/check-login` to handle redirects and better detect login status, providing more descriptive error messages.
-- **Kite Live Mode**: Enhanced error handling in `/api/positions` for Live mode, including better JSON parsing and clearer instructions on token expiry/invalidity.
-- **Frontend Feedback**: Added detailed error alerts and improved Kite redirect confirmation for a better prototyping experience.
-
-### Added
-- Created `.junie/guidelines.md` to define project rules for input handling and development standards.
-- Created `CHANGELOG.md` to track project evolution.
-
-### Changed
-- Updated `README.md` to remove mentions of P&L trend charts.
-
 ### Fixed
+- **Connectivity Issue**: Resolved "Site can't be reached" error by clarifying HTTP usage (vs HTTPS) and updating server to bind to `0.0.0.0` for better local accessibility.
 - **Poll Timer**: Fixed an issue where the next poll countdown would continue into negative numbers by ensuring an immediate reset when it reaches zero.
 
 ## [Previous Changes]

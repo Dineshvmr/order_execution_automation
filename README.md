@@ -27,7 +27,7 @@ Fills the Sensibull gap by providing automated P&L threshold monitoring and auto
    ```bash
    npm run dev
    ```
-5. **Access**: Open [http://localhost:3000](http://localhost:3000)
+5. **Access**: Open [http://localhost:3000](http://localhost:3000) (Note: Use **HTTP**, not HTTPS).
 
 ## Demo Mode
 The app starts in **Demo Mode** by default. It uses `mock_data/mock_positions.json` to simulate a live portfolio. You can toggle "Demo Mode" off in the header to connect to your real Kite account.
