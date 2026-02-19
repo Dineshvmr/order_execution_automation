@@ -57,11 +57,26 @@ app.get('/api/positions', async (req, res) => {
         });
 
         if (positionsRes.status === 403 || positionsRes.status === 401) {
-            return res.status(401).json({ error: 'Kite token expired', redirect: `https://kite.zerodha.com/connect/login?api_key=${process.env.KITE_API_KEY}` });
+            const redirectUrl = `https://kite.zerodha.com/connect/login?api_key=${process.env.KITE_API_KEY}`;
+            console.log(`[LIVE MODE] Token invalid or expired. Suggesting redirect to: ${redirectUrl}`);
+            return res.status(401).json({ 
+                error: 'Kite token expired or invalid', 
+                redirect: redirectUrl,
+                detail: 'Unauthorized access to Kite API. Please check your KITE_API_KEY and KITE_ACCESS_TOKEN in .env'
+            });
         }
 
-        const data = await positionsRes.json();
+        const text = await positionsRes.text();
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            console.error('[LIVE MODE] Failed to parse Kite response as JSON:', text.substring(0, 100));
+            throw new Error(`Invalid response from Kite API: ${text.substring(0, 50)}...`);
+        }
+
         if (data.status !== 'success') {
+            console.error('[LIVE MODE] Kite API returned error:', data);
             throw new Error(data.message || 'Failed to fetch positions from Kite');
         }
 
@@ -104,32 +119,42 @@ app.get('/check-login', async (req, res) => {
     console.log('Checking login status...');
     try {
         const sensibullUrl = process.env.SENSIBULL_URL || 'https://web.sensibull.com';
+        console.log(`Fetching ${sensibullUrl}/positions...`);
+        
+        // Use a simpler fetch for the login check, as full browser cookie inheritance 
+        // is not possible in a Node.js server without user providing those cookies.
         const response = await fetch(`${sensibullUrl}/positions`, {
-            credentials: 'include',
+            method: 'GET',
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            }
+            },
+            redirect: 'manual' // Don't follow redirects to login page automatically
         });
 
         console.log('Sensibull response status:', response.status);
+        const location = response.headers.get('location');
+        if (location) console.log('Redirect location:', location);
 
-        if (response.status === 401) {
-            return res.json({ loggedIn: false, message: 'Login to web.sensibull.com first' });
+        if (response.status === 302 || response.status === 401 || (location && location.includes('login'))) {
+            return res.json({ loggedIn: false, message: 'Not logged in. Please login to web.sensibull.com in your browser first.' });
         }
 
         const html = await response.text();
         const $ = cheerio.load(html);
         
-        // Basic check for positions content in the parsed HTML
-        // This is a prototype check, adjust based on actual page structure if needed
-        const hasPositionsContent = html.toLowerCase().includes('positions') || $('title').text().toLowerCase().includes('positions');
+        // If we get a 200 but it's actually the login page content
+        const isLoginPage = html.toLowerCase().includes('login') && !html.toLowerCase().includes('positions');
 
-        if (response.ok && hasPositionsContent) {
+        if (response.ok && !isLoginPage) {
             console.log('Login successful');
             res.json({ loggedIn: true });
         } else {
             console.log('Login failed or unexpected content');
-            res.json({ loggedIn: false, message: 'Login to web.sensibull.com first' });
+            res.json({ 
+                loggedIn: false, 
+                message: 'Could not verify positions page. Ensure you are logged in at web.sensibull.com',
+                debug: { status: response.status, location }
+            });
         }
     } catch (error) {
         console.error('Error during login check:', error);

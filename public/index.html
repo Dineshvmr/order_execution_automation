@@ -147,16 +147,24 @@
         async function fetchPositions() {
             try {
                 const res = await fetch('/api/positions');
+                const data = await res.json();
+                
                 if (res.status === 401) {
-                    const data = await res.json();
                     if (data.redirect) {
-                        if (confirm('Kite session expired. Redirect to login?')) {
+                        if (confirm(`Kite session issue: ${data.error || 'Expired'}. Redirect to login?`)) {
                             window.location.href = data.redirect;
                         }
-                        return;
+                    } else {
+                        alert(`Session Error: ${data.error}`);
                     }
+                    return;
                 }
-                const data = await res.json();
+
+                if (res.status !== 200) {
+                    console.error('API Error:', data);
+                    alert(`Error: ${data.error || 'Failed to fetch positions'}`);
+                    return;
+                }
                 
                 // Update Badge
                 updateModeBadge(data.mode);
